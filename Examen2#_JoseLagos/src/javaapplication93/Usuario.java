@@ -5,19 +5,22 @@
  */
 package javaapplication93;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author tali_
  */
-public class Usuario {
+public class Usuario implements Serializable {
+
     private String name;
     private int edad;
     private String username;
     private String password;
-    private ArrayList<playlist>playlist = new ArrayList();
-    private ArrayList<cancion>favoritas = new ArrayList();
+    private ArrayList<playlist> playlist = new ArrayList();
+    private ArrayList<cancion> favoritas = new ArrayList();
+    private static final long SerialVersionUID = 777L;
 
     public Usuario() {
     }
@@ -69,8 +72,6 @@ public class Usuario {
         this.playlist = playlist;
     }
 
-
-
     public ArrayList<cancion> getFavoritas() {
         return favoritas;
     }
@@ -83,6 +84,5 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "name=" + name + ", edad=" + edad + ", username=" + username + ", password=" + password + ", playlist=" + playlist + ", favoritas=" + favoritas + '}';
     }
-    
-    
+
 }

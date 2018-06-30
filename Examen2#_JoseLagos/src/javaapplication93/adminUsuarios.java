@@ -11,21 +11,23 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+  
 
 /**
  *
  * @author tali_
  */
-public class adminUsuarios {
+public class adminUsuarios implements Serializable{
         private File archivo = null;
     private ArrayList<Usuario>listaUsuarios= new ArrayList();
     
-     public adminUsuarios(String path){
-        archivo = new File(path);
-    }
 
-    public adminUsuarios() {
+   private static final long SerialVersionUID = 777L;
+  
+   public adminUsuarios(String path){
+        archivo = new File(path);
     }
 
     public File getArchivo() {
@@ -47,7 +49,7 @@ public class adminUsuarios {
 
     @Override
     public String toString() {
-        return "adminUsuarios{" + "archivo=" + archivo + ", listaAlumnos=" + listaUsuarios + '}';
+        return "adminUsuarios{" + "archivo=" + archivo + ", listaUsuarios=" + listaUsuarios + '}';
     }
        public void setUsuario(Usuario a){
         listaUsuarios.add(a);
@@ -64,6 +66,7 @@ public class adminUsuarios {
                         listaUsuarios.add(temp);
                     }
                 } catch (EOFException e) {
+                    e.printStackTrace();
                 }
                 objeto.close();
                 entrada.close();

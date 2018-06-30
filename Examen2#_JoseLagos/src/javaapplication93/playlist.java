@@ -5,16 +5,17 @@
  */
 package javaapplication93;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author tali_
  */
-public class playlist {
+public class playlist implements Serializable {
     private String nombre;
     private ArrayList<cancion>canciones1 = new ArrayList();
-
+   private static final long SerialVersionUID = 777L;
     public playlist() {
     }
 

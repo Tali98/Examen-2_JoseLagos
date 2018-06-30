@@ -5,18 +5,19 @@
  */
 package javaapplication93;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author tali_
  */
-public class Albums {
+public class Albums implements Serializable{
 
     private String nombre;
     private String artista;
     private ArrayList<cancion> canciones1 = new ArrayList();
-
+   private static final long SerialVersionUID = 777L;
     public Albums(String nombre, String artista) {
         this.nombre = nombre;
         this.artista = artista;

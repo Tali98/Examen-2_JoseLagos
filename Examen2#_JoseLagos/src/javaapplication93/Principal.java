@@ -96,6 +96,12 @@ public class Principal extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox<>();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jd_favoritos = new javax.swing.JDialog();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton11 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -410,9 +416,19 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem9);
 
         jMenuItem10.setText("Ver Favoritos");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem10);
 
         jMenuItem11.setText("Salir");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem11);
 
         jMenuBar2.add(jMenu2);
@@ -683,6 +699,77 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel10.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(251, 251, 251));
+        jLabel12.setText("FAVORITOS");
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Artista", "Duracion", "Genero"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jTable4);
+
+        jButton11.setText("Reproducir");
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(jButton11)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton11)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_favoritosLayout = new javax.swing.GroupLayout(jd_favoritos.getContentPane());
+        jd_favoritos.getContentPane().setLayout(jd_favoritosLayout);
+        jd_favoritosLayout.setHorizontalGroup(
+            jd_favoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_favoritosLayout.setVerticalGroup(
+            jd_favoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -748,9 +835,19 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setText("Guardar Usuarios");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem6.setText("Cargar Usuarios");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
@@ -1096,12 +1193,12 @@ public class Principal extends javax.swing.JFrame {
                     lol = a;
                 }
             }
-           for (int a = 0 ; a < users.get(actual).getPlaylist().size() ; a++){
-               String name2 = users.get(actual).getPlaylist().get(a).getNombre();
-               if (name.equals(name2)){
-                   v=true;
-               }
-           }
+            for (int a = 0; a < users.get(actual).getPlaylist().size(); a++) {
+                String name2 = users.get(actual).getPlaylist().get(a).getNombre();
+                if (name.equals(name2)) {
+                    v = true;
+                }
+            }
             if (v == true) {
                 int fila = jTable3.getSelectedRow();
                 String nombre = jTable3.getValueAt(fila, 1).toString();
@@ -1157,6 +1254,78 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton10MouseClicked
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Artista", "Duracion", "Genero"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
+        DefaultTableModel modelo = (DefaultTableModel) jTable4.getModel();
+        for (int a = 0; a < users.get(actual).getFavoritas().size(); a++) {
+            String nombre = users.get(actual).getFavoritas().get(a).getNombre();
+            String artista = users.get(actual).getFavoritas().get(a).getArtista();
+            int duracion = users.get(actual).getFavoritas().get(a).getDuracion();
+            String genero = users.get(actual).getFavoritas().get(a).getGenero();
+            Object[] row = {nombre, artista, duracion, genero};
+            modelo.addRow(row);
+            jTable4.setModel(modelo);
+        }
+        jd_favoritos.setModal(true);
+        jd_favoritos.pack();
+        jd_favoritos.setLocationRelativeTo(jd_log);
+        jd_favoritos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        if (jTable4.getSelectedRow() != -1) {
+            int fila = jTable4.getSelectedRow();
+            String nombre = jTable4.getValueAt(fila, 0).toString();
+            String artista = jTable4.getValueAt(fila, 1).toString();
+            int edad = Integer.parseInt(jTable4.getValueAt(fila, 2).toString());
+            String genero = jTable4.getValueAt(fila, 3).toString();
+            Reproducir(nombre, artista, edad, genero);
+        }
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        jt_user.setText("");
+        jt_pass.setText("");
+        jd_log.setVisible(false);
+        jd_entrar.setVisible(false);
+
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        adminUsuarios u = new adminUsuarios("./wendell.loamo");
+        u.cargarArchivo();
+        u.setListaUsuarios(users);
+        u.escribirArchivo();
+        JOptionPane.showMessageDialog(this, "Guardo exitosamente");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+   
+        adminUsuarios u = new adminUsuarios("./wendell.loamo");
+        u.cargarArchivo();
+    
+        users = u.getListaUsuarios();
+        System.out.println(users);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    public void Reproducir(String nombre, String artista, int edad, String genero) {
+
+        reproduccion r = new reproduccion(edad, nombre, artista);
+        r.start();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1195,6 +1364,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1210,6 +1380,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1234,6 +1405,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1246,12 +1418,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JDialog jd_album;
     private javax.swing.JDialog jd_entrar;
     private javax.swing.JDialog jd_explore;
+    private javax.swing.JDialog jd_favoritos;
     private javax.swing.JDialog jd_log;
     private javax.swing.JDialog jd_play;
     private javax.swing.JDialog jd_playlist;
@@ -1269,4 +1444,5 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Albums> albums = new ArrayList();
     ArrayList<playlist> play = new ArrayList();
     int actual;
+
 }

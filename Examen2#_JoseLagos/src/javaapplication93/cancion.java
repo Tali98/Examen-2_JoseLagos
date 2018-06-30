@@ -5,16 +5,18 @@
  */
 package javaapplication93;
 
+import java.io.Serializable;
+
 /**
  *
  * @author tali_
  */
-public class cancion {
+public class cancion implements Serializable{
     private String nombre;
      private String artista;
      private int duracion;
       private String genero;
-
+   private static final long SerialVersionUID = 777L;
     public cancion() {
     }
 
