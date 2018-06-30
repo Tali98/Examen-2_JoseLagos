@@ -81,6 +81,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jt_listar = new javax.swing.JTree();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jButton12 = new javax.swing.JButton();
         jd_entrar = new javax.swing.JDialog();
         jPanel8 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -503,18 +504,32 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setText("Eliminar");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(jButton12)))
+                        .addGap(0, 45, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3)))
                 .addContainerGap())
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,8 +537,10 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton12)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jd_playLayout = new javax.swing.GroupLayout(jd_play.getContentPane());
@@ -993,31 +1010,6 @@ public class Principal extends javax.swing.JFrame {
                 albums.remove(a);
             }
         }
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "Album", "Artista"
-                }
-        ) {
-            Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-        });
-
-        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
-        for (int a = 0; a < albums.size(); a++) {
-            String nombre = albums.get(a).getNombre();
-            String artista = albums.get(a).getArtista();
-
-            Object[] row = {nombre, artista};
-            modelo.addRow(row);
-            jTable2.setModel(modelo);
-        }
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -1320,6 +1312,23 @@ public class Principal extends javax.swing.JFrame {
         users = u.getListaUsuarios();
         System.out.println(users);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        Object v1 = jt_listar.getSelectionPath().getLastPathComponent();
+        String nombre  = v1.toString();
+        DefaultMutableTreeNode nodo_el = (DefaultMutableTreeNode)v1;
+        DefaultTreeModel m = (DefaultTreeModel) jt_listar.getModel();
+        m.removeNodeFromParent(nodo_el);
+        for (int a = 0 ; a < users.get(actual).getPlaylist().size() ; a++){
+            for(int b = 0 ; b < users.get(actual).getPlaylist().get(a).getCanciones1().size() ; b++){
+                String nombre2 = users.get(actual).getPlaylist().get(a).getCanciones1().get(b).getNombre();
+                if(nombre2.equals(nombre)){
+                    users.get(actual).getPlaylist().get(a).getCanciones1().remove(b);
+                }
+            }
+        }
+   
+    }//GEN-LAST:event_jButton12MouseClicked
     public void Reproducir(String nombre, String artista, int edad, String genero) {
 
         reproduccion r = new reproduccion(edad, nombre, artista);
@@ -1365,6 +1374,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
